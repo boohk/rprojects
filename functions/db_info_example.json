@@ -1,0 +1,15 @@
+{
+  "oracle_info": {
+    "url": "url",
+    "user": "username",
+    "password": "password"
+  },
+  "pg_info": {
+  "user": "username",
+  "password": "password",
+  "dbname": "dbname",
+  "host":"hostname",
+  "port":"portnum"
+  }
+  
+}

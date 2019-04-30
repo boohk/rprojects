@@ -37,6 +37,7 @@ CheckSchemaExistence <- function(conn, schema.name) {
   return (exist.schema)
 }
 
+
 # Create Schema
 # schema.name: it will be created using conn.
 CreateSchema <- function(conn, schema.name) {
@@ -51,6 +52,7 @@ CreateSchema <- function(conn, schema.name) {
   }
   rm(query, exist.schema)
 }
+
 
 # Create Table
 # ow: Whether overwrite or not (TRUE, FLASE)
@@ -136,6 +138,23 @@ DropTbl <- function(conn, schema.name, tbl.name) {
     }
   } else {
     cat(schema.name, "doesn't exists.", "\n")
+    cat("check schema first!", "\n")
+  }
+}
+
+
+# Read a Table
+ReadTbl <- function(conn, schema.name, tbl.name) {
+  exist.schema <- CheckSchemaExistence(conn, schema.name)
+  if(exist.schema$exists[1]) {
+    if(dbExistsTable(conn, c(schema.name, tbl.name))) {
+      result <- dbReadTable(conn, c(schema.name, tbl.name))
+      return(result)
+    } else {
+      cat(tbl.name, "doesn't exists.")
+    }
+  } else {
+    cat(schema.name, "doesn't exists.")
     cat("check schema first!", "\n")
   }
 }
